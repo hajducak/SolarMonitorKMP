@@ -17,13 +17,12 @@ data class SolarPanelData(
     val powerOutCurrent: Float,     // in Amperes
     val internalTemperature: Float, // in Celsius
     val solarTemperature: Float,    // in Celsius
-    val voltage3V3: Float,          // 3.3V rail voltage
-    
-    // Calculated values
-    val solarPower: Float get() = solarVoltage * solarCurrent,
-    val outputPower: Float get() = powerOutVoltage * powerOutCurrent,
-    val efficiency: Float get() = if (solarPower > 0) (outputPower / solarPower) * 100 else 0f
+    val voltage3V3: Float           // 3.3V rail voltage
 ) {
+    // Calculated values
+    val solarPower: Float get() = solarVoltage * solarCurrent
+    val outputPower: Float get() = powerOutVoltage * powerOutCurrent
+    val efficiency: Float get() = if (solarPower > 0) (outputPower / solarPower) * 100 else 0f
     companion object {
         fun empty(deviceId: String) = SolarPanelData(
             deviceId = deviceId,

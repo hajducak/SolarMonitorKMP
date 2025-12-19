@@ -1,10 +1,12 @@
 plugins {
     kotlin("multiplatform")
-    kotlin("native.cocoapods")
+    // kotlin("native.cocoapods")
     kotlin("plugin.serialization")
     id("com.android.library")
     id("org.jetbrains.compose")
 }
+
+@OptIn(org.jetbrains.compose.ExperimentalComposeLibrary::class)
 
 kotlin {
     androidTarget {
@@ -18,7 +20,8 @@ kotlin {
     iosX64()
     iosArm64()
     iosSimulatorArm64()
-
+    // Temporarily disabled for Android-only development
+    /*
     cocoapods {
         summary = "Solar Monitor Shared Module"
         homepage = "https://github.com/yourusername/SolarMonitorKMP"
@@ -30,7 +33,7 @@ kotlin {
             isStatic = true
         }
     }
-    
+    */
     sourceSets {
         val commonMain by getting {
             dependencies {
