@@ -1,0 +1,60 @@
+# Gradle
+.gradle/
+build/
+gradle-app.setting
+!gradle-wrapper.jar
+.gradletasknamecache
+
+# Android
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+bin/
+gen/
+out/
+captures/
+.externalNativeBuild
+.cxx
+local.properties
+*.iml
+.idea/
+*.log
+
+# iOS
+*.xcodeproj
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+*.xcuserdata
+*.xcuserdatad
+DerivedData/
+*.hmap
+*.ipa
+*.dSYM.zip
+*.dSYM
+Pods/
+.cocoapods/
+
+# macOS
+.DS_Store
+
+# KMP
+shared/build/
+androidApp/build/
+iosApp/build/
+
+# Firebase
+google-services.json
+GoogleService-Info.plist
+
+# Secrets
+*.keystore
+*.jks
+key.properties
+
+# Misc
+*.swp
+*.bak
+*~
+.vscode/
