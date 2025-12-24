@@ -29,21 +29,23 @@ class ModbusClient(
     suspend fun connect(): Boolean = withContext(Dispatchers.IO) {
         try {
             disconnect() // Close any existing connection
-            
-            socket = aSocket(selectorManager)
-                .tcp()
-                .connect(device.ipAddress, device.port)
-                .let { socket ->
-                    if (useTLS) {
-                        // Enable TLS for encrypted communication
-                        socket.tls(Dispatchers.IO)
-                    } else {
-                        socket
+
+            withTimeout(timeout) {
+                socket = aSocket(selectorManager)
+                    .tcp()
+                    .connect(device.ipAddress, device.port)
+                    .let { socket ->
+                        if (useTLS) {
+                            // Enable TLS for encrypted communication
+                            socket.tls(Dispatchers.IO)
+                        } else {
+                            socket
+                        }
                     }
-                }
-            
-            readChannel = socket?.openReadChannel()
-            writeChannel = socket?.openWriteChannel(autoFlush = true)
+
+                readChannel = socket?.openReadChannel()
+                writeChannel = socket?.openWriteChannel(autoFlush = true)
+            }
             
             println("Connected to ${device.address} (TLS: $useTLS)")
             true
